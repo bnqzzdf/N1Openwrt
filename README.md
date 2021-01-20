@@ -10,22 +10,6 @@
  * Default IP: 192.168.0.1
 
 
-## app list:
- * jd-dailybonus
- * ssr+
- * ServerChan
- * unblockmusic
- * ddns
- * samba4
- * KMS 
- * frp
- * docker
- * cifs(挂载 SMB/CIFS 网络共享文件夹)
- * vsftpd
- * usb_printer
- * ipsec-server
- * flowoffload
- 
 ------
  # 感激 
  [P3TERX](https://github.com/P3TERX/Actions-OpenWrt)提供的脚本参考  
