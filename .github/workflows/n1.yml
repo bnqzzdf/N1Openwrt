@@ -28,7 +28,6 @@ env:
   DIY_FEEDS: diy-feeds.sh
   DIY_SH: diy.sh
   CONFIG_FILE: n1.config
-  UPLOAD_COWTRANSFER: true
   TZ: Asia/Shanghai
   RELEASE: true
   DELETE_IPK: true
@@ -151,15 +150,6 @@ jobs:
         body: |
           当前使用版本:（编译前的最后一次源码更新记录）
         artifacts: "${{ env.FIRMWARE }}/*.tar.gz,${{ env.FIRMWARE }}/*.tar.xz"  
-
-    - name: Upload firmware to cowtransfer
-      id: cowtransfer
-      if: steps.compile.outputs.status == 'success' && env.UPLOAD_COWTRANSFER == 'true' && !cancelled()
-      run: |
-        curl -fsSL git.io/file-transfer | sh
-        ./transfer cow --block 2621440 -s -p 64 --no-progress ${FIRMWARE} 2>&1 | tee cowtransfer.log
-        echo "::warning file=cowtransfer.com::$(cat cowtransfer.log | grep https)"
-        echo "::set-output name=url::$(cat cowtransfer.log | grep https | cut -f3 -d" ")"
         
     - name: Delete workflow runs
       uses: GitRML/delete-workflow-runs@main
